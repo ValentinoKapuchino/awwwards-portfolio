@@ -1,5 +1,4 @@
 import {words} from "../../constants";
-import {Button, HeroExperience} from "../../components";
 
 
 export const Hero = () => {
@@ -43,11 +42,6 @@ export const Hero = () => {
                         />
                     </div>
                 </header>
-                <figure>
-                    <div className="hero-3d-layout">
-                        <HeroExperience />
-                    </div>
-                </figure>
             </div>
         </section>
     )
