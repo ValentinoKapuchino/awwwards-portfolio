@@ -1,7 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { Points } from "@react-three/fiber";
 
 type Particle = {
     position: [number, number, number];
@@ -31,7 +30,7 @@ const Particles = ({ count = 200 }: ParticlesProps) => {
     }, [count]);
 
     useFrame(() => {
-        const geometry = mesh.current.geometry;
+        const geometry = mesh.current.geometry as THREE.BufferGeometry;
         const positions = geometry.attributes.position.array as Float32Array;
 
         for (let i = 0; i < count; i++) {
@@ -59,15 +58,12 @@ const Particles = ({ count = 200 }: ParticlesProps) => {
             <bufferGeometry>
                 <bufferAttribute
                     attach="attributes-position"
-                    count={count}
-                    array={positions}
-                    itemSize={3}
+                    args={[positions, 3]}
                 />
             </bufferGeometry>
             <pointsMaterial
                 color="#ffffff"
                 size={0.05}
-                transparent
                 opacity={0.9}
                 depthWrite={false}
             />
